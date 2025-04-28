@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🌍 Carbon Emissions Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #74ebd5;
+            outline: none;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #00f2fe;
+            transform: scale(1.05);
+        }
+
+        .results {
+            margin-top: 20px;
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            animation: slideUp 1s ease;
+        }
+
+        img {
+            width: 80%;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌱 Carbon Emissions</h1>
+    <form method="POST" onsubmit="showPopup()">
+        <label for="electricity">⚡ Electricity (kWh):</label>
+        <input type="number" id="electricity" name="electricity" step="0.01" required>
+
+        <label for="transportation">🚗 Transportation (km):</label>
+        <input type="number" id="transportation" name="transportation" step="0.01" required>
+
+        <button type="submit">Calculate 🌟</button>
+    </form>
+
+    {% if chart %}
+    <div class="results">
+        <h2>📊 Results</h2>
+        <img src="{{ chart }}" alt="Carbon Emissions Pie Chart">
+        <p>⚡ Electricity Emissions: <strong>{{ electricity }} kg</strong></p>
+        <p>🚗 Transportation Emissions: <strong>{{ transportation }} kg</strong></p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function showPopup() {
+    Swal.fire({
+        title: "Submitted!",
+        text: "Calculating your carbon emissions 🌎",
+        icon: "success",
+        confirmButtonText: "OK"
+    });
+}
+</script>
+
+</body>
+</html>
